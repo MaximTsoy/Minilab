@@ -1,0 +1,77 @@
+/*********************************************************
+**                   1  GRID SYSTEM                     **
+*********************************************************/
+
+/* layout modifications */
+
+
+/*********************** align **************************/
+
+body#login{
+    display: flex;
+    align-items: center;
+}
+
+.bottom-10{
+    margin-bottom: 10px;
+}
+
+.bottom-20{
+    margin-bottom: 20px;
+}
+
+.bottom-35{
+    margin-bottom: 35px;
+}
+
+.bottom-50{
+    margin-bottom: 50px;
+}
+
+.bottom-100{
+    margin-bottom: 100px;
+}
+
+.v_center {
+    margin: auto;
+}
+
+#wrapper{
+    height: 500px;
+    padding-bottom: 100px;
+}
+
+/********************** sizing **************************/
+.small-540.container{
+    width: 540px;
+}
+
+.small-720.container{
+    width: 720px;
+}
+
+/********************* formating ************************/
+
+.color-blue{
+    color: #0077b3;
+}
+
+/*********************************************************
+**                   2  CARD SYSTEM                     **
+*********************************************************/
+.card{
+
+}
+
+.card input{
+    border: none;
+    background: none;
+    line-height: 1.2em;
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+
+.card input:focus{
+    border-bottom: solid 1px #d3d3d3;
+}
