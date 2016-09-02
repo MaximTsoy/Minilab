@@ -29,7 +29,7 @@ Route::get('/projects', array(
     'uses'  =>  'project.main@index'
 ));
 
-Route::get('/projects/single', array(
+Route::get('/projects/single/project', array(
     'as'    =>  'single_project',
     'uses'  =>  'project.main@single'
 ));
@@ -44,10 +44,29 @@ Route::get('/projects/remove_project', array(
     'uses'  =>  'project.main@removeProject'
 ));
 
+Route::post ('/projects/task_remove', array(
+    'as'    =>  'remove_task',
+    'uses'  =>  'project.task@removeTask'
+));
+
 Route::post('/projects/update', array(
     'uses'  =>  'project.main@updateProject'
 ));
 
+Route::post('/projects/task_update', array(
+    'uses'  =>  'project.task@updateTask'
+
+));
+
+
+Route::get('/projects/single/task', array(
+    'as'    =>  'single_task',
+    'uses'  =>  'project.task@single'
+));
+
+Route::post('/projects/task_tick', array(
+    'uses'  =>  'project.task@tick'
+));
 /*
 |--------------------------------------------------------------------------
 |  Personal Cab routes

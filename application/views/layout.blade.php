@@ -55,8 +55,8 @@
         <script src="/js/vendor/modernizr/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <!--/ modernizr -->
 
-
         @yield('head')
+
 
     </head>
 
@@ -883,6 +883,7 @@
         <script src="/js/vendor/coolclock/coolclock.js"></script>
         <script src="/js/vendor/coolclock/excanvas.js"></script>
         <script src="/js/vendor/countTo/jquery.countTo.js"></script>
+
         <!--/ vendor javascripts -->
 
 
@@ -896,7 +897,7 @@
 
         @yield('footer')
         <!--/ custom javascripts -->
-
+        @yield('modal')
 
     </body>
 </html>

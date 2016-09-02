@@ -21,8 +21,12 @@ class Project_main_Controller extends Controller{
 
     public function get_single(){
         $project = Project_project::find(Input::get('id'));
+        $tasks  =   new Project_task;
+        $tasks = $tasks->getByProject(Input::get('id'));
+        $tasks = $this->project_distribute($tasks, 3);
         if(Session::get('user_id') == $project->user_id){
             return View::make('project.single')
+                ->with('tasks', $tasks)
                 ->with('project', $project);
         }else{
             return Redirect::to_route('projects')
@@ -50,9 +54,22 @@ class Project_main_Controller extends Controller{
 
         if(Input::get('id')){
             $project = $project->find(Input::get('id'));
-        }
 
-        if($this->own_validate($project)){
+            if($this->own_validate($project)){
+                $project->title = Input::get('title');
+                $project->summary = Input::get('summary');
+                $project->image = Input::get('image');
+                $project->deadline = Input::get('deadline');
+                $project->purpose = Input::get('purpose');
+                $project->category_id = Input::get('category_id');
+                $project->user_id = Session::get('user_id');
+
+                $project->save();
+                return Redirect::to('/projects');
+            }else{
+                return $results['error'] = 'Fuck off, please :)';
+            }
+        }else{
             $project->title = Input::get('title');
             $project->summary = Input::get('summary');
             $project->image = Input::get('image');
@@ -63,8 +80,6 @@ class Project_main_Controller extends Controller{
 
             $project->save();
             return Redirect::to('/projects');
-        }else{
-            return $results['error'] = 'Fuck off, please :)';
         }
 
     }
