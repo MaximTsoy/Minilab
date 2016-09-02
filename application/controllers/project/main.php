@@ -23,11 +23,13 @@ class Project_main_Controller extends Controller{
         $project = Project_project::find(Input::get('id'));
         $tasks  =   new Project_task;
         $tasks = $tasks->getByProject(Input::get('id'));
+        $no_distr_tasks = $tasks;
         $tasks = $this->project_distribute($tasks, 3);
         if(Session::get('user_id') == $project->user_id){
             return View::make('project.single')
                 ->with('tasks', $tasks)
-                ->with('project', $project);
+                ->with('project', $project)
+                ->with('no_distr_tasks', $no_distr_tasks);
         }else{
             return Redirect::to_route('projects')
                 ->with('notification', 'This is not your project');

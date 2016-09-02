@@ -13,6 +13,7 @@ class Project_task extends Eloquent
     public function getByProject($id){
         if($result = $this->where('user_id', '=', Session::get('user_id'))
             ->where('project_id', '=', $id)
+            ->order_by('deadline')
             ->get()){
             return $result;
         }else{

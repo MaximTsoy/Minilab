@@ -96,20 +96,27 @@
                 </div>
 
             </div>
+
+            <!-- Planner footer -->
             <div class="panel-footer">
+                @if(isset($tasks) && $tasks[0][0] != "Y")
                 <div>
                     <section class="cd-horizontal-timeline">
                         <div class="timeline">
                             <div class="events-wrapper">
                                 <div class="events">
-                                    <ol>
-                                        <li><a href="#0" data-date="16/01/2014" class="selected">16 Jan</a></li>
-                                        <li><a href="#0" data-date="28/03/2014">28 mAR</a></li>
-                                        <li><a href="#0" data-date="28/04/2015">28 Feb</a></li>
-                                        <li><a href="#0" data-date="28/05/2015">28 Feb</a></li>
-                                        <li><a href="#0" data-date="28/06/2015">28 Feb</a></li>
-                                        <!-- other dates here -->
-                                    </ol>
+                                    <ul>
+                                        @foreach($no_distr_tasks as $k => $task)
+
+                                                <li><a href="#0" style="max-width: 50px;" data-date="{{date("d/n/Y", strtotime($task->deadline))}}"
+                                                    @if($k == 0)
+                                                       class="selected"
+                                                    @endif>{{$task->title}}</a></li>
+
+                                                <!-- other dates here -->
+
+                                        @endforeach
+                                    </ul>
 
                                     <span class="filling-line" aria-hidden="true"></span>
                                 </div> <!-- .events -->
@@ -122,45 +129,33 @@
                         </div> <!-- .timeline -->
 
                         <div class="events-content">
-                            <ol>
-                                <li class="selected" data-date="16/01/2014">
-                                    <h2>Horizontal Timeline</h2>
-                                    <em>January 16th, 2014</em>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                                    </p>
-                                </li>
+                            <ul>
+                                @foreach($no_distr_tasks as $k => $task)
 
-                                <li data-date="28/02/2014">
-                                    <h2>Horizontal Timeline</h2>
-                                    <em>January 16th, 2014</em>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                                    </p>
-                                </li><li data-date="28/03/2014">
-                                    <h2>Horizontal Timeline</h2>
-                                    <em>January 16th, 2014</em>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                                    </p>
-                                </li><li data-date="28/04/2015">
-                                    <!-- event description here -->
-                                </li><li data-date="28/05/2014">
-                                    <!-- event description here -->
-                                </li><li data-date="28/06/2014">
-                                    <!-- event description here -->
-                                </li>
+                                        <li data-date="{{date("d/n/Y", strtotime($task->deadline))}}"
+                                        @if($k == 0)
+                                                       class="selected"
+                                        @endif>
+                                            <h3>{{$task->title}}</h3>
+                                            <em>{{date("M d,Y", strtotime($task->deadline))}}</em>
+                                            <p>{{$task->summary}}</p>
+                                        </li>
 
-                                <!-- other descriptions here -->
-                            </ol>
+
+                                @endforeach
+
+
+                            </ul>
                         </div> <!-- .events-content -->
                     </section>
                 </div>
+                @endif
                 <div class="card-quotation">
                     <p>Цитата</p>
                 </div>
 
             </div>
+            <!-- Planner footer ends -->
 
         </div>
         <div class="row">
